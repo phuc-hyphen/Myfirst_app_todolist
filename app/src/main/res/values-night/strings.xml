@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="addtodo">Addtodo</string>
+    <string name="deletetodo">Deletetodo</string>
+    <string name="list_your_to_do">List your to do</string>
+    <string name="item_todo">item_todo</string>
+</resources>
