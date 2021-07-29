@@ -6,38 +6,39 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.databinding.ActivityMainBinding
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var Tododapter:todoadapter // Lateinit is allowed for non-primitive data types only and the variable can't be of null type.
+    private lateinit var Todoadapter:todoadapter // Lateinit is allowed for non-primitive data types only and the variable can't be of null type.
+//    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) { // oncreate fun : called when we lance the app
         super.onCreate(savedInstanceState)
-        val  binding = com.example.myapplication.databinding.ActivityMainBinding.inflate(layoutInflater)
+//        binding = ActivityMainBinding.inflate(layoutInflater)
 //        val binding = ActivityMainBinding.inflate(getLayoutInflater(),viewGroup,false)
-        setContentView(binding.root)
-
+//        setContentView(binding.root)
+        setContentView(R.layout.activity_main)
         // assign a new todoadapter to a todoadapter file
-        Tododapter= todoadapter(mutableListOf())//mutableListOf(): allow us to pass a mutable list
+        Todoadapter= todoadapter(mutableListOf())//mutableListOf(): allow us to pass a mutable list
 
-        // reassign todoadapter to recycleview adapter
-        // activity_main.xml become a class name activityMainBinding
-        binding.reviewbar.adapter= Tododapter
+        // reassign todoadapter to recycleview adapter // activity_main.xml become a class name activityMainBinding
 
-        // layout manager : definies how the items are  arranged in our list
+        reviewbar.adapter= Todoadapter
+        reviewbar.layoutManager = LinearLayoutManager(this )// layout manager : definies how the items are  arranged in our list
 
-        binding.reviewbar.layoutManager = LinearLayoutManager(this )
 
-        binding.ButAdd.setOnClickListener {                    //set behavior for addtodo button
+        //set behavior for addtodo button
+        ButAdd.setOnClickListener {
             // put your logic
-            val todotitle = binding.Editbar.text.toString()
+            val todotitle = Editbar.text.toString()
             if (todotitle.isNotEmpty()) {
-                val todo: todo = todo(todotitle)
-                Tododapter.addtodo(todo)
-                binding.Editbar.text.clear()
+                val Todo = todo(todotitle)
+                Todoadapter.addtodo(Todo)
+                Editbar.text.clear()
             }
         }
-        binding.ButDel.setOnClickListener(){                 //set behavior for addtodo button
-            Tododapter.deletetodo()
+        ButDel.setOnClickListener(){                 //set behavior for addtodo button
+            Todoadapter.deletetodo()
         }
 
 
